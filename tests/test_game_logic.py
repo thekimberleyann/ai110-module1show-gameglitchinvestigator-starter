@@ -249,18 +249,18 @@ def test_bug10_too_low_says_higher():
 # ---------------------------------------------------------------------------
 
 def test_bug11_loss_exactly_after_full_limit_hard():
-    """Bug #11: on Hard (limit 5) with a fixed secret, 5 wrong guesses must
-    NOT flip 'lost' until exactly the 5th — the player gets all 5 guesses,
+    """Bug #11: on Hard (limit 8) with a fixed secret, 8 wrong guesses must
+    NOT flip 'lost' until exactly the 8th — the player gets all 8 guesses,
     not one fewer."""
     secret = 25
     state = fresh_state(secret=secret)
     limit = get_attempt_limit("Hard")
-    assert limit == 5
+    assert limit == 8
 
     # Distinct wrong guesses each turn (all > secret -> "Too High", never a win,
     # and never repeated so the duplicate guard doesn't reject them).
     for attempt in range(1, limit + 1):
-        wrong_guess = str(secret + attempt)  # 26, 27, 28, 29, 30 — all in 1-100
+        wrong_guess = str(secret + attempt)  # 26..33 — all in 1-100
         state, result = apply_guess(state, wrong_guess, "Hard")
         assert result["outcome"] != "Win"
         if attempt < limit:

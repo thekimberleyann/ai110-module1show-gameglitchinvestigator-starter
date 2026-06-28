@@ -35,15 +35,17 @@ def get_attempt_limit(difficulty: str):
         difficulty (str): The difficulty name ("Easy", "Normal", or "Hard").
 
     Returns:
-        int: Allowed attempts. "Easy" gives 6, "Normal" gives 8,
-        "Hard" gives 5; any unrecognized value defaults to 8.
+        int: Allowed attempts. "Easy" gives 6, "Normal" gives 7,
+        "Hard" gives 8; any unrecognized value defaults to 7. The limits
+        scale with the number range so harder difficulties (wider ranges)
+        allow more guesses while staying tighter relative to the range.
     """
     limits = {
         "Easy": 6,
-        "Normal": 8,
-        "Hard": 5,
+        "Normal": 7,
+        "Hard": 8,
     }
-    return limits.get(difficulty, 8)
+    return limits.get(difficulty, 7)
 
 
 def parse_guess(raw: str):
