@@ -71,8 +71,6 @@ def parse_guess(raw: str):
 
     # Parsing with int() directly rejects "3.7", "3.0", "1e2", and "abc"
     # while still accepting whitespace-padded whole numbers and negatives.
-    # The old code used int(float(raw)), which silently truncated decimals
-    # (e.g. "3.7" -> 3) instead of rejecting them.
     try:
         value = int(raw.strip())
     except Exception:
@@ -124,7 +122,6 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
         return current_score + points
 
     if outcome == "Too High":
-        # Consistent -5 penalty on every attempt regardless of parity.
         return current_score - 5
 
     if outcome == "Too Low":

@@ -2,7 +2,6 @@ import streamlit as st
 
 # This file is the thin "imperative shell": it only reads widgets, calls into
 # logic_utils for all game rules/state transitions, and renders the result.
-# All game logic now lives in logic_utils.py — Claude (agent mode).
 from logic_utils import (
     get_range_for_difficulty,
     get_attempt_limit,
